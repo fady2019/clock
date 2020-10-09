@@ -1,0 +1,218 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.light-mode{
+    filter: invert(1) hue-rotate(180deg); 
+}
+
+.clock-container{
+    position: relative;
+    min-height: 100vh;
+    background-color: #202020;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch-mode{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: calc(var(--mode-btn-height) - 5px);
+    top: calc(var(--mode-btn-height) - 5px);
+    color: #777;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.switch-mode > span{
+    display: flex;
+    align-items: center;
+    width: var(--mode-btn-width);
+    height: var(--mode-btn-height);
+    margin: 0 calc(var(--mode-btn-height) - 15px);
+    border: 2px solid #202020;
+    border-radius: 50px;
+    padding: 0 2.5px;
+    cursor: pointer;
+    box-shadow: 
+                -5px -5px 5px rgba(255, 255, 255, 0.05),
+                5px 5px 5px rgba(0, 0, 0, 0.3),
+                -5px -5px 5px rgba(255, 255, 255, 0.05) inset,
+                5px 5px 5px rgba(0, 0, 0, 0.3) inset;
+}
+
+.switch-mode > span.light{
+    justify-content: flex-start;
+}
+
+.switch-mode > span.light{
+    justify-content: flex-end;
+}
+
+.switch-mode > span::before{
+    content: '';
+    display: block;
+    width: calc(var(--mode-btn-height) - 10px);
+    height: calc(var(--mode-btn-height) - 10px);
+    border-radius: 50%;
+    background-color: #777;
+}
+
+.clock {
+    position: relative;
+    background-color: #202020;
+    background-image: url('./clock.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: var(--clock-size);
+    height: var(--clock-size);
+    border-radius: 50%;
+    border: 3px solid #202020;
+    box-shadow: 
+                -10px -10px 10px rgba(255, 255, 255, 0.05),
+                10px 10px 10px rgba(0, 0, 0, 0.3),
+                -10px -10px 10px rgba(255, 255, 255, 0.05) inset,
+                10px 10px 10px rgba(0, 0, 0, 0.3) inset;
+}
+
+.clock::before{
+    content: '';
+    position: absolute;
+    width: calc( var(--clock-size) / 33 );
+    height: calc( var(--clock-size) / 33 );
+    background-color: #FFF;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+.clock>div{
+    position: absolute;
+}
+
+.clock div.hand.sec,
+.clock div.hand.min,
+.clock div.hand.hour{
+    top: 50%;
+    left: 50%;
+}
+
+.clock div.hand.sec{
+    width: calc( (0.75/100) * var(--clock-size) );
+    height: 85%;
+}
+
+.clock div.hand.min{
+    width: calc( (1.25/100) * var(--clock-size) );
+    height: 70%;
+}
+
+.clock div.hand.hour{
+    width: calc( (2/100) * var(--clock-size) );
+    height: 60%;
+}
+
+.clock div.hand.sec span,
+.clock div.hand.min span,
+.clock div.hand.hour span{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.clock div.hand.sec span::before,
+.clock div.hand.min span::before,
+.clock div.hand.hour span::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px; 
+    border-radius: 5px;
+}
+
+.clock div.hand.sec span::before{
+    height: 67.5%;
+}
+
+.clock div.hand.min span::before,
+.clock div.hand.hour span::before{
+    height: 50%;
+}
+
+.clock div.hand.sec span::before{
+    background-color: #fff;
+}
+
+.clock div.hand.min span::before{
+    background-color: #E91E63;
+}
+
+.clock div.hand.hour span::before{
+    background-color: #3498db;
+}
+
+
+.clock .logo{
+    bottom: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    color: #777;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+:root{
+    --mode-btn-width: 90px;
+    --mode-btn-height: 35px;
+}
+
+@media (max-width: 575px){
+    :root{
+        --clock-size: 180px;
+        --mode-btn-width: 60px;
+        --mode-btn-height: 25px;
+    }
+    .clock .logo{
+        font-size: 14px;
+    }
+    .switch-mode{
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 576px){
+    :root{
+        --clock-size: 300px;
+    }
+}
+
+@media (min-width: 768px){
+    :root{
+        --clock-size: 400px;
+    }
+}
+
+@media (min-width: 992px){
+    :root{
+        --clock-size: 480px;
+    }
+}
+
+@media (min-width: 1200px){
+    :root{
+        --clock-size: 500px;
+    }
+}
